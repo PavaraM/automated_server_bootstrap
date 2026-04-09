@@ -43,7 +43,7 @@ check_and_install_apt() {
             chown "$SUDO_USER:$SUDO_USER" "$aptlog"
         fi
         echo "$pkg_name installation failed (check $aptlog for details)"
-        log ERROR "$pkg_name installation failed (see apt log: apt_$TIMESTAMP-$name.log)"
+        log ERROR "$pkg_name installation failed (see apt log: apt_$TIMESTAMP-$pkg_name.log)"
         return 5
     fi
 }
@@ -52,9 +52,10 @@ installing_pkg() {
     log DEBUG "Loading the packages list from \"$SCRIPT_DIR/conf/packages.conf\"."
     if source "$SCRIPT_DIR/conf/packages.conf" &> /dev/null; then
         log INFO "Package list has been successfully loaded"
-        log INFO "Theese packages will be installed: ${package_name[@]}"
+        log INFO "These packages will be installed: ${package_name[@]}"
     else
-        log ERROR "Package list cannot be loaded. Please check the if the file \"$SCRIPT_DIR/conf/packages.conf\" exsists."
+        log ERROR "Package list cannot be loaded. Please check if the file \"$SCRIPT_DIR/conf/packages.conf\" exists."
+        return 5
     fi
     
     for pkg in ${package_name[@]}; do

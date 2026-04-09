@@ -55,7 +55,8 @@ installing_pkg() {
         log INFO "These packages will be installed: ${package_name[@]}"
     else
         log ERROR "Package list cannot be loaded. Please check if the file \"$SCRIPT_DIR/conf/packages.conf\" exists."
-        return 5
+        return 1
+    fi
     fi
     
     for pkg in ${package_name[@]}; do

@@ -50,6 +50,7 @@ logger_init() {
             echo "Script started at $(date)"
             echo "Environment: $environment"
             echo "User: $USER (SUDO_USER: ${SUDO_USER:-none})"
+            echo "SCRIPT_DIR: $SCRIPT_DIR"
             echo "------------------------------"
             echo ""
         } >> "$logfile"

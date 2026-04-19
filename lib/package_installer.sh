@@ -57,12 +57,12 @@ installing_pkg() {
         log ERROR "Package list cannot be loaded. Please check if the file \"$SCRIPT_DIR/conf/packages.conf\" exists."
         return 1
     fi
-    fi
+
     
     for pkg in ${package_name[@]}; do
         if ! check_and_install_apt "$pkg" "$pkg"; then
             log ERROR "Failed to install package: $pkg"
-            failed_packages+=("$pkg")
+            failed_packages+="$pkg"
         else
             log INFO "Package $pkg installed successfully"
         fi

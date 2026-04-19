@@ -40,7 +40,7 @@ logger_init() {
     mkdir -p "$LOG_DIR"
     mkdir -p "$ARCHIVE_DIR"
 
-    log_archive
+    #log_archive
 
     touch "$logfile"
 
